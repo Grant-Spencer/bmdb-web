@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bmdb.business.Movie;
@@ -52,7 +53,7 @@ public class MovieController {
 		m = movieRepo.save(m);
 		return m;
 	}
-	
+
 	// Delete a movie
 	@DeleteMapping("/{id}")
 	public Movie deleteMovie(@PathVariable int id) {
@@ -66,4 +67,16 @@ public class MovieController {
 		}return m.get();
 		
 	}
-}
+
+	// find by rating
+	@GetMapping("/find-by-rating")
+	public List<Movie> findByrating(@RequestParam String rating) {
+		return movieRepo.findByRating(rating);
+		}
+	
+	// find by director
+		@GetMapping("/find-by-director")
+		public List<Movie> findBydirector(@RequestParam String director) {
+			return movieRepo.findByDirector(director);
+		
+}}
